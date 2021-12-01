@@ -14,8 +14,8 @@ import (
 	"crypto/subtle"
 	"errors"
 	"fmt"
-	"github.com/Hyperledger-TWGC/ccs-gm/sm2"
-	"github.com/Hyperledger-TWGC/ccs-gm/x509"
+	"github.com/yzy-github/ccs-gm/sm2"
+	"github.com/yzy-github/ccs-gm/x509"
 	"io"
 	"strconv"
 	"sync/atomic"
@@ -313,7 +313,7 @@ func (hs *clientHandshakeStateGM) doFullHandshake() error {
 		certRequested = true
 		hs.finishedHash.Write(certReq.marshal())
 
-		if chainToSend, err = hs.getCertificate(certReq); err != nil{
+		if chainToSend, err = hs.getCertificate(certReq); err != nil {
 			c.sendAlert(alertInternalError)
 			return err
 		}

@@ -3,7 +3,7 @@ package utils
 import (
 	"bytes"
 	"crypto/rand"
-	"github.com/Hyperledger-TWGC/ccs-gm/sm2"
+	"github.com/yzy-github/ccs-gm/sm2"
 	"testing"
 )
 
@@ -25,7 +25,7 @@ func TestPEM2Key(t *testing.T) {
 	if err != nil {
 		t.Errorf("pem to private key error %t", err)
 	}
-	
+
 	normalPk, err := PEMtoPublicKey(pemPk, nil)
 	if err != nil {
 		t.Errorf("pem to public key error %t", err)
@@ -39,42 +39,42 @@ func TestPEM2Key(t *testing.T) {
 }
 
 func TestEncryptPEMBlock(t *testing.T) {
-	sm2priv,err := sm2.GenerateKey(rand.Reader)
+	sm2priv, err := sm2.GenerateKey(rand.Reader)
 	if err != nil {
-		t.Errorf("sm2 gen key err:%s",err)
+		t.Errorf("sm2 gen key err:%s", err)
 		return
 	}
 
-	pem,err := PrivateKeyToEncryptedPEM(sm2priv,[]byte("123"))
+	pem, err := PrivateKeyToEncryptedPEM(sm2priv, []byte("123"))
 	if err != nil {
-		t.Errorf("priv to pem err :%s",err)
+		t.Errorf("priv to pem err :%s", err)
 		return
 	}
 
-	priv,err := PEMtoPrivateKey(pem,[]byte("123"))
+	priv, err := PEMtoPrivateKey(pem, []byte("123"))
 	if err != nil {
-		t.Errorf("pem tp priv err: %s",err)
+		t.Errorf("pem tp priv err: %s", err)
 		return
 	}
 
-	if !bytes.Equal(sm2priv.D.Bytes(),priv.D.Bytes()) {
+	if !bytes.Equal(sm2priv.D.Bytes(), priv.D.Bytes()) {
 		t.Error("pem err")
 		return
 	}
 
-	pubpem,err := PublicKeyToEncryptedPEM(&priv.PublicKey,[]byte("123"))
+	pubpem, err := PublicKeyToEncryptedPEM(&priv.PublicKey, []byte("123"))
 	if err != nil {
-		t.Errorf("pubkey to pem err: %s",err)
+		t.Errorf("pubkey to pem err: %s", err)
 		return
 	}
 
-	pk,err := PEMtoPublicKey(pubpem,[]byte("123"))
+	pk, err := PEMtoPublicKey(pubpem, []byte("123"))
 	if err != nil {
-		t.Errorf("pem to pk err:%s",err)
+		t.Errorf("pem to pk err:%s", err)
 		return
 	}
 
-	if !bytes.Equal(priv.X.Bytes(),pk.X.Bytes()) {
+	if !bytes.Equal(priv.X.Bytes(), pk.X.Bytes()) {
 		t.Error("pk pem err")
 		return
 	}

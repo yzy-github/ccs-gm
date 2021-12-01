@@ -24,8 +24,8 @@ import (
 	"encoding/pem"
 	"errors"
 	"fmt"
-	"github.com/Hyperledger-TWGC/ccs-gm/sm2"
-	"github.com/Hyperledger-TWGC/ccs-gm/sm3"
+	"github.com/yzy-github/ccs-gm/sm2"
+	"github.com/yzy-github/ccs-gm/sm3"
 	"hash"
 	"io"
 	"math/big"
@@ -2398,13 +2398,13 @@ func parseCertificateRequest(in *certificateRequest) (*CertificateRequest, error
 		RawSubjectPublicKeyInfo:  in.TBSCSR.PublicKey.Raw,
 		RawSubject:               in.TBSCSR.Subject.FullBytes,
 
-		Signature:          in.SignatureValue.RightAlign(),
+		Signature: in.SignatureValue.RightAlign(),
 		//SignatureAlgorithm: getSignatureAlgorithmFromAI(in.SignatureAlgorithm),
 		SignatureAlgorithm: SignatureAlgorithm,
 		//PublicKeyAlgorithm: getPublicKeyAlgorithmFromOID(in.TBSCSR.PublicKey.Algorithm.Algorithm),
 		PublicKeyAlgorithm: PublicKeyAlgorithm,
-		Version:    in.TBSCSR.Version,
-		Attributes: parseRawAttributes(in.TBSCSR.RawAttributes),
+		Version:            in.TBSCSR.Version,
+		Attributes:         parseRawAttributes(in.TBSCSR.RawAttributes),
 	}
 
 	var err error

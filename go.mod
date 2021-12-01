@@ -1,4 +1,4 @@
-module github.com/Hyperledger-TWGC/ccs-gm
+module github.com/yzy-github/ccs-gm
 
 go 1.14
 

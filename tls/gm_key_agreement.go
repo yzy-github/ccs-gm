@@ -10,8 +10,8 @@ import (
 	"crypto/elliptic"
 	"encoding/asn1"
 	"errors"
-	"github.com/Hyperledger-TWGC/ccs-gm/sm2"
-	"github.com/Hyperledger-TWGC/ccs-gm/x509"
+	"github.com/yzy-github/ccs-gm/sm2"
+	"github.com/yzy-github/ccs-gm/x509"
 	"io"
 	"math/big"
 
